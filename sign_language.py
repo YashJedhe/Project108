@@ -23,7 +23,8 @@ while True:
             for id ,lm in enumerate(hand_landmark.landmark):
                 lm_list.append(lm)
 
-             #Code goes here   
+             #Code goes here 
+            finger_fold_status=[]
             for tip in finger_tips:
                 x,y = int(lm_list[tip].x*w), int(lm_list[tip].y*h)
                 cv2.circle(img, (x,y), 15,(255,0,0), cv2.FILLED)
@@ -39,7 +40,7 @@ while True:
                 if lm_list[thumb_tip].y < lm_list[thumb_tip-1].y < lm_list[thumb_tip-2].y:
                     print("LIKE")
                     cv2.putText(img,"LIKE",(20,30),cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,0),3)
-                if lm_list[thumb_tip].y < lm_list[thumb_tip-1].y < lm_list[thumb_tip-2].y:
+                if lm_list[thumb_tip].y < lm_list[thumb_tip-1].y > lm_list[thumb_tip-2].y:
                     print("DISLIKE")
                     cv2.putText(img,"DISLIKE",(20,30),cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0),3) 
                            
